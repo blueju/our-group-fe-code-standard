@@ -1,5 +1,6 @@
-# our-group-js-standard
-our-group-js-standard
+# our-group-js-code-standard
+> 我们团队的 JavaScript 代码规范
+
 
 todo:
 1. 事件方法，匿名函数？手动绑定this？函数表达式？
