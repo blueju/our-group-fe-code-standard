@@ -23,7 +23,7 @@
 
 情况介绍，
 
-团队使用的是 React 技术栈，使用的前端应用框架是 Umi，主要做基于微前端的后管基座平台、后管子应用、及周边。
+团队使用的是 React 技术栈，使用的前端应用框架是 Umi，使用的前端 UI 组件库是 Ant Design，主要做基于微前端的后管基座平台、后管子应用及周边。
 
 
 
@@ -472,7 +472,7 @@ class Login extends React.Component{
 
 
 
-## 13. 关于变量、函数的命名单词拼写问题
+## 14. 关于变量、函数的命名单词拼写问题
 
 ### 示范
 
@@ -506,4 +506,34 @@ tradeCode
 错误缩写：
 
 tsCode、tsElement、TSelement 等
+
+## 15. 尽量少使用 Ant Design Form 中的 defaultValue、initialValue 等属性
+
+### 示范
+
+错误示范
+
+```
+
+```
+
+正确示范
+
+```
+
+```
+
+### 原因
+
+如果你不清楚什么不轻易使用，那就先不要使用，请使用其他方式使用你的功能，并后续去了解其中的原因。
+
+因为我发现不止一次，有多名组件在这块上面犯错误。
+
+### 参考
+
+> https://ant.design/components/form-cn/#Form-的-initialValues-与-Item-的-initialValue-区别？
+
+
+
+
 
