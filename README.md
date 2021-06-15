@@ -1,6 +1,6 @@
-# our-group-js-code-standard
+# our-group-fe-code-standard
 
-> 我们团队的 JavaScript 代码规范
+> 我们团队的 frontend 代码规范
 
 
 
