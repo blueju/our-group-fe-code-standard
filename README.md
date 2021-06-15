@@ -507,6 +507,8 @@ tradeCode
 
 tsCode、tsElement、TSelement 等
 
+
+
 ## 15. 尽量少使用 Ant Design Form 中的 defaultValue、initialValue 等属性
 
 ### 示范
@@ -514,13 +516,13 @@ tsCode、tsElement、TSelement 等
 错误示范
 
 ```
-
+/
 ```
 
 正确示范
 
 ```
-
+/
 ```
 
 ### 原因
@@ -535,5 +537,38 @@ tsCode、tsElement、TSelement 等
 
 
 
+## 16. Class 组件使用 constructor 构造器
 
+### 示范
+
+错误示范
+
+```
+class Login extends Component {
+	this.state = {}
+	componentDidMount(){}
+}
+```
+
+正确示范
+
+```
+class Login extends Component {
+	constructor(props){
+		super(props)
+		this.state = {}
+	}
+	componentDidMount(){}
+}
+```
+
+### 原因
+
+虽然两者在实际编译后的代码中是一致的，社区中也同时存在着这两种写法，但为了保持团队内一致，统一取下面的写法（即正确示例）。
+
+同时也是为了与 componentDidMount 等生命周期区分开来（因为我发现挺多组员写代码时，代码顺序乱七八糟混在一块），毕竟有时候我们在组件里需要定义的东西可不止 this.state 这么一个。
+
+### 参考
+
+> https://segmentfault.com/a/1190000022521222?utm_source=tag-newest
 
