@@ -595,3 +595,89 @@ class Login extends Component {
 项目特点，需求变动尤其大，因此尽管看似有可共用的部分，也暂不轻易做组件封装复用，等到项目稳定了再考虑，减少后续麻烦。
 
 > 真实案例：quota 项目的查看/编辑/新增页面，一开始觉得页面都差不多，结果需求后面改到完全不一样了，逻辑很多很乱，结果还不如分开写。
+
+
+
+## 18. 关于 React 组件中 this 指向绑定与事件处理的问题
+
+### 示范
+
+错误示范
+
+```javascript
+// 非错误示范，而是不建议示范
+class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+    return (
+      <button onClick={() => this.handleClick()}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+正确示范
+
+```javascript
+// 正确示范一
+// class fields 语法
+class LoggingButton extends React.Component {
+  // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+  // 注意: 这是 *实验性* 语法。
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+
+// 正确示范二
+// 构造器中绑定 this
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // 为了在回调中使用 `this`，这个绑定是必不可少的
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+```
+
+### 原因
+
+> （如上错误示范）
+>
+> 此语法问题在于每次渲染 `LoggingButton` 时都会创建不同的回调函数。在大多数情况下，这没什么问题，但如果该回调函数作为 prop 传入子组件时，这些组件可能会进行额外的重新渲染。我们通常建议在构造器中绑定或使用 class fields 语法来避免这类性能问题。
+
+React 官方更建议我们在构造器中绑定 this，或使用 class fields 语法来避免这类性能问题。
+
+### 参考
+
+> 事件处理：https://zh-hans.reactjs.org/docs/handling-events.html
