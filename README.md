@@ -604,7 +604,7 @@ class Login extends Component {
 
 
 
-## 18. 关于 React 组件中 this 指向绑定与事件处理的问题
+## 18. 关于 React 组件中 this 指向绑定的问题
 
 ### 示范
 
@@ -684,13 +684,45 @@ class Toggle extends React.Component {
 
 React 官方更建议我们在构造器中绑定 this，或使用 class fields 语法来避免这类性能问题。
 
+**那我们选一个？**
+
 ### 参考
 
-> 事件处理：https://zh-hans.reactjs.org/docs/handling-events.html
+> 事件处理：
+>
+> https://zh-hans.reactjs.org/docs/handling-events.html
 
 
 
-## 19. import 顺序
+## 19. 向事件处理程序传递参数
+
+### 示范
+
+错误示范
+
+```javascript
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+```
+
+正确示范
+
+```javascript
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+```
+
+### 原因
+
+由于上一条 18 的原因，可能实际操作中没有了匿名函数，就有同学不知道需要事件处理时如何进行传参了。同样根据参考的建议，如果我们不使用匿名函数的话，那我们可以使用 bind 这些方式进行事件处理传参。
+
+### 参考
+
+> 向事件处理程序传递参数：
+>
+> https://zh-hans.reactjs.org/docs/handling-events.html#passing-arguments-to-event-handlers
+
+
+
+## 20. import 顺序
 
 ### 示范
 
