@@ -6,10 +6,10 @@
 
 # TODO
 
-* [ ] 事件方法，匿名函数？手动绑定this？函数表达式？
+* [x] 事件方法，匿名函数？手动绑定this？函数表达式？
 * [ ] 注释使用 `/** xxx */`
 * [ ] 属性接收字符串的，不需要使用{}包裹
-* [ ] service里的方法以 api 开头
+* [x] service里的方法以 api 开头
 * [ ] 如果使用 class 组件，还要不要构造函数
 * [ ] antd table column 写在 render 里
 
@@ -771,3 +771,74 @@ React 官方更建议我们在构造器中绑定 this，或使用 class fields �
 没啥原因，去 GitHub 看各大明星项目，都使用了版本锁定，只是大多数使用的是 yarn.lock（因为 yarn 安装依赖更快），鉴于我们使用的是内部 npm 仓库，即使不使用 yarn 也已经很快了。
 
 因此我们统一使用 node 自带的 npm 的依赖版本锁定文件 package-lock.json。
+
+
+
+## 22. 注释尽可能使用 /** */
+
+### 示范
+
+错误示范
+
+```javascript
+// 年龄
+let age = 25
+
+// 人
+let person = {
+	// 姓名
+	name: "姓名",
+	// 年龄
+	age: "年龄",
+}
+
+// 处理交易要素的选中，展示要素值框
+handleEleSelect(record, selected) {
+  if (selected) {
+    this.setState({
+      elementValueDis: true,
+      txnElementId: record.txnElementId,
+    });
+  }
+}
+```
+
+正确示范
+
+```javascript
+/** 年龄 */
+let age = 25
+
+/** 人 */
+let person = {
+	/** 姓名 */
+	name: "姓名",
+	/** 年龄 */
+	age: "年龄",
+}
+
+/**
+ * 处理交易要素的选中，展示要素值框
+ * @param {string} record
+ * @param {boolean} selected
+ */
+handleEleSelect(record, selected) {
+  if (selected) {
+    this.setState({
+      elementValueDis: true,
+      txnElementId: record.txnElementId,
+    });
+  }
+}
+```
+
+### 原因
+
+因为这样，IDE 能更好的解析注释，达到以下效果，让其他人能更好地读懂代码。
+
+![image](https://user-images.githubusercontent.com/49681036/122330165-3f904c80-cf65-11eb-81a9-dad7e53f6991.png)
+
+![image](https://user-images.githubusercontent.com/49681036/122330118-28e9f580-cf65-11eb-89e8-59fea927e16d.png)
+
+![image](https://user-images.githubusercontent.com/49681036/122330001-f3dda300-cf64-11eb-91ac-ba7c13a18344.png)
+
