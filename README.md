@@ -745,3 +745,29 @@ React 官方更建议我们在构造器中绑定 this，或使用 class fields �
 - 第三方依赖
 - 样式文件
 - 其他自定义组件/自定义 js 文件
+
+
+
+## 21. 关于 package-lock.json / yarn.lock 依赖版本锁定的问题
+
+### 示范
+
+错误示范
+
+```
+// 未上传 package-lock.json
+// 或
+// 上传了 yarn.lock
+```
+
+正确示范
+
+```
+// 上传了 package-lock.json
+```
+
+### 原因
+
+没啥原因，去 GitHub 看各大明星项目，都使用了版本锁定，只是大多数使用的是 yarn.lock（因为 yarn 安装依赖更快），鉴于我们使用的是内部 npm 仓库，即使不使用 yarn 也已经很快了。
+
+因此我们统一使用 node 自带的 npm 的依赖版本锁定文件 package-lock.json。
