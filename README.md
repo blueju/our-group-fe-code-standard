@@ -7,7 +7,7 @@
 # TODO
 
 * [x] 事件方法，匿名函数？手动绑定this？函数表达式？
-* [ ] 注释使用 `/** xxx */`
+* [x] 注释使用 `/** xxx */`
 * [ ] 属性接收字符串的，不需要使用{}包裹
 * [x] service里的方法以 api 开头
 * [ ] 如果使用 class 组件，还要不要构造函数
@@ -19,24 +19,23 @@
 
 不断完善ing...
 
-
+<br />
 
 情况介绍，
 
 团队使用的是 React 技术栈，使用的前端应用框架是 Umi，使用的前端 UI 组件库是 Ant Design，主要做基于微前端的后管基座平台、后管子应用及周边。
 
-
+<br />
 
 代码格式化这块，
 
 使用的是 Prettier，使用的配置统一是：
 
-
 > 参考：
 >
 > https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md#如何结合-prettier-使用
 
-
+<br />
 
 代码检查这块，
 
@@ -46,13 +45,13 @@
 >
 > https://github.com/AlloyTeam/eslint-config-alloy
 
-
+<br />
 
 个人认为，
 
 应该最大化地利用工具提高效率，而不是一遍又一遍开会手把手说哪里哪里应该加空格、加逗号、换行等。只有对某些代码，工具也无能为力的时候，才使用人为约定的规范进行约束，以提高效率。
 
-
+<br />
 
 不过，
 
